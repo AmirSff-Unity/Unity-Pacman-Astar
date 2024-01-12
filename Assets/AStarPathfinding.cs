@@ -39,7 +39,7 @@ public static class AStarPathfinding
                 float hCost = GetDistance(neighbour, end, ghostsPosition);
                 if (dangerousNodes.Contains(neighbour))
                 {
-                    hCost += 10000;
+                    continue;
                 }
                 float fCost = gCost + hCost;
 

@@ -97,11 +97,17 @@ public class Pacman : MonoBehaviour
             //find the path to the selected pelet
 
             path = AStarPathfinding.FindPath(node, node1, FindObjectsByType<Node>(FindObjectsSortMode.InstanceID).ToList(), GetDangerousNodes(), allGhostsPosition);
+            if(path == null || path.Count == 0)
+            {
+                selectedPellet = null;
+                OnTriggerEnter2D(collision);
+                return;
+            }
 
 
             Vector2 side;
             // if user raeched the destination, user gould go to the direction of pelet
-            if (path.Count == 0 || path.Count == 1)
+            if (path.Count == 1)
             {
                 side = GetDirection(node.transform.position, selectedPellet.transform.position);
             }
